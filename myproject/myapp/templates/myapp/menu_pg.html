@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static "myapp/images/icon.ico" %}">
+    <link rel="stylesheet" href="{% static "myapp/css/menu_pg.css" %} ">
+    <title>PALengke</title>
+    
+</head>
+<body>
+    <header>
+      
+      <!-- NAVIGATION BUTTON -->
+      <nav>
+        <ul>
+          <!-- MAP DISPLAY BUTTON -->
+          <li><a href="#c_modal" class="c_button">VIEW MAP</a>
+            <div class="c_modal" id="c_modal">
+              <div class="c_modal__dialog">
+                <section class="c_modal__content">
+                  <div>
+                    <a href="#" class="c_modal__close">&times;</a>
+                    <img src="{% static "myapp/images/map.png" %}" style="width:40rem;">
+                  </div>
+                </section>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="content">
+        <!-- MENU SELECTION -->
+        <div class="logo">
+              <img src="{% static "myapp/images/logo2.png" %}" alt="Logo">
+        </div> 
+        
+        <div class="menu">
+          <a href="{% url 'myapp:meats' %}" class="b-button">
+            <img src="{% static "myapp/images/op1.png" %}">
+          </a>
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/op2.png" %}">
+          </a>
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/op3.png" %}">
+          </a>
+        
+        </div>
+        <div class="menu">
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/op4.png" %}">
+          </a>
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/op5.png" %}">
+          </a>
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/op6.png" %}">
+          </a>
+
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search item" id="search" class="search" onclick="searching('{{items_list | escapejs}}')">
+          <button type="submit"><img src = "{% static "myapp/images/search.png" %}" style="width:30px;margin:1px 1px 1px 1px;"></button>
+        </div>
+        <ul id="suggestions" class="suggestions-list">
+          <li></li>
+        </ul>
+
+      </div>
+
+      
+       <!-- BACK BUTTON-->
+       <div class="button-container">
+        <a href="{% url 'myapp:start_pg' %}" class="back" >
+
+          <img src="{% static 'myapp/images/exit.png' %}" style="width:20px; margin: 1px;">
+        </a>
+        </a>
+      </div> 
+    </main>
+    </main>
+
+
+    {% comment %} <div style="border:2px solid red;">
+      <input type="hidden" name="csrfmiddlewaretoken" id="csrf_token" value="{{csrf_token}}">
+
+			<form id="uploadForm" enctype="multipart/form-data">
+			   <h1>HEllo Upload here</h1>
+			   <input type="file" id="fileInput" name="image">
+			   <button type="button" onclick="uploadFile()">Upload</button>
+		   </form>
+		</div>
+ {% endcomment %}
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static 'myapp/js/index.js' %}"></script>
+    {% comment %} <script>
+            
+      const searchInput = document.getElementById('search');
+      const suggestionsList = document.getElementById('suggestions');
+
+
+      const suggestions = [
+          'Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Honeydew','Appacus'
+      ];
+
+      searchInput.addEventListener('input', () => {
+          console.log("Inputting");
+          const query = searchInput.value.toLowerCase();
+          suggestionsList.innerHTML = '';
+          
+          if (query.length === 0) {
+              suggestionsList.style.display = 'none';
+              return;
+          }
+          
+          const filteredSuggestions = suggestions.filter(item => item.toLowerCase().startsWith(query));
+          console.log(filteredSuggestions);
+
+          filteredSuggestions.forEach(item => {
+              const listItem = document.createElement('li');
+            //  listItem.textContent = item;
+            listItem.innerHTML = "<strong>"+item.substring(0,query.length)+"</strong>"+item.substring(query.length,item.length);
+              listItem.addEventListener('click', () => {
+                  searchInput.value = item;
+                  suggestionsList.style.display = 'none';
+              });
+              suggestionsList.appendChild(listItem);
+          });
+          
+          suggestionsList.style.display = filteredSuggestions.length > 0 ? 'block' : 'none';
+      });
+
+
+
+
+
+
+
+    </script> {% endcomment %}
+  </body>
+</html>

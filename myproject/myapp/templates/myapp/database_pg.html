@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang='en'>
+    {% load static %}
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>PALengke</title>
+        <link rel="icon" href="{% static "myapp/images/icon.ico" %}">
+        <link rel="stylesheet" href="{% static "myapp/css/database_pg.css" %}">
+	</head>
+    <body>
+    <input type="hidden" name="csrfmiddlewaretoken" id="csrf_token" value="{{csrf_token}}">    
+
+    <div class="logo-container">
+        <img src="{% static 'myapp/images/logo3.png' %}" class="logo">
+      </div>
+
+    <h1>ITEM MANAGEMENT</h1>
+    <div style="align-items:center;margin-bottom:20px">
+    
+            <select name="store-filter" id="store-select"  style="outline: none;
+            border: none;
+            background: #fff;
+            padding: 10px 0px;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            width: 30%;margin-left:650px;">
+                <option value="">-- Store --</option>
+                <option value="Mang Kanor's Store">Mang Kanor's Store</option>
+                <option value="Store 2">Store 2</option>
+            </select> 
+        <button class="filter-button" id="filter-button" >Filter</button>
+    </div>
+    
+    <!-- TRANSAC HITORY TABLE -->
+    <div class="table-container">
+        <table id="market-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>Store</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th>Item Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% comment %} <tr>
+                    <td><input type="radio" id="MT001"></td> <!-- CHANGE THE ID BASED ON ITEM_ID -->
+                    <td>MT001</td>
+                    <td>Chicken</td>
+                    <td>Meats</td>
+                    <td>Mang Kanor</td>
+                    <td>165</td>
+                    <td>Kilo</td>
+                </tr> {% endcomment %}
+                {% for market in markets %}
+                <tr>
+                    <td><input type="radio" name="radio" class="select-radio" id="table" ></td>
+                    <td>{{ market.item_id }}</td>
+                    <td>{{ market.item_name }}</td>
+                    <td>{{ market.item_categ }}</td>
+                    <td>{{ market.store }}</td>
+                    <td>{{ market.price }}.00 Php</td>
+                    <td>{{ market.per }}</td>
+
+                    <td style="padding:5px">
+                            <a href="#c_modal" class="c_button" id="c_button"><img src="{{ market.item_img.url }}" alt="" height=80 width=80></a> 
+                    </td>
+                    {% comment %} <td><img src="{% static market.map_img %}" height=80 width=80></td> {% endcomment %}
+                </tr>
+                {% endfor %}
+                <div class="c_modal" id="c_modal">
+                    <div class="c_modal__dialog">
+                      <section class="c_modal__content">
+                        <div>
+                          <a href="#" class="c_modal__close">&times;</a>
+                          <img id="popup-img" src="" class="logo">
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                <!-- ADD MORE ROWS HERE -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="button-container">
+        <a href="#a_modal" class="a_button" >Add Item</a>
+        <a href="#e_modal" class="e_button" onclick="editPrice()">Edit Price</a>
+        <a href="#d_modal" class="d_button" onclick="deleteItem()">Delete Item</a>
+    </div>
+
+    <!-- ADD FUNCTION -->
+    <div class="a_modal" id="a_modal">
+        <div class="a_modal__dialog">
+            <section class="a_modal__content">  
+                <header class="a_modal__header">
+                    <h2 class="a_modal__title">ADD ITEM</h2>
+                    <a href="#" class="a_modal__close">&times;</a>
+                </header>
+                <div>
+                    
+                    <form>
+                        <select name="Store" id="store">
+                            <option value="">-- Store --</option>
+                            <option value="Mang Kanor's Store">Mang Kanor's Store</option>
+                            <option value="Store 2">Store 2</option>
+                        </select>
+                    </form>
+
+                   
+                    <form>
+                        <select name="Category" id="item-category" required>
+                            <option value="">-- Category --</option>
+                            <option value="Meats">Meats</option>
+                            <option value="Seafoods">Seafoods</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Fruits">Fruits</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Clothes">Clothes</option>
+                        </select>
+                    </form>
+                   
+                     <form>
+                        <input type="text" placeholder="Item Name" id="item-name" required>
+                    </form>
+                    <form>
+                        <div class="form-group-inline">
+                            <input type="number" placeholder="Price" id="item-price" required>
+                            <select name="Per" id="per" required>
+                                <option value="">-- Unit --</option>
+                                <option value="Piece">Piece</option>
+                                <option value="Kilo">Kilo</option>
+                            </select>
+                        </div>
+                    </form>
+                    <form>
+                        <div class="upload-btn-container">
+                            <input type="file" id="imageUpload" accept=".png">
+                            <label for="imageUpload" class="upload-btn" id="upload-btn">Select Image</label>
+                        </div>
+                    </form>                    
+                </div>
+                
+                <!-- CONFIRM BUTTON -->
+                <a href="#" class="b_confirm" id="add_confirm">CONFIRM</a>
+            </section>
+        </div>
+    </div>
+
+    <!-- EDIT PRICE FUNCTION -->
+    <div class="e_modal" id="e_modal">
+        <div class="e_modal__dialog">
+            <section class="e_modal__content">
+                <header class="e_modal__header">
+                    <h2 class="e_modal__title">EDIT PRICE</h2>
+                    <a href="#" class="e_modal__close">&times;</a>
+                </header>
+                <div>
+                    <form>
+                        <h3 id="e-item-id">Item ID: </h3> <!-- ITEM ID FROM THE SELECTED RADIO WILL APPEAR HERE-->
+                    </form>
+                    <form>
+                        <input type="number" placeholder="New Price" id="new-price">
+                    </form>
+                </div>
+                <!-- CONFIRM BUTTON -->
+                <a href="#" class="b_confirm" id="edit_confirm">CONFIRM</a>
+            </section>
+        </div>
+    </div>
+
+    <!-- DELETE FUNCTION -->
+    <div class="d_modal" id="d_modal">
+        <div class="d_modal__dialog">
+            <section class="d_modal__content">
+                <header class="d_modal__header">
+                    <h2 class="d_modal__title">DELETE ITEM</h2>
+                    <a href="#" class="d_modal__close">&times;</a>
+                </header>
+                <div>
+                    <form>
+                        <h3 id="d-item-id">Item ID: </h3> <!-- ITEM ID FROM THE SELECTED RADIO WILL APPEAR HERE-->
+                    </form>
+                    <form>
+                        <h4>Click confirm to delete this item.</h4>
+                    </form>
+                </div>
+                <!-- CONFIRM BUTTON -->
+                <a href="#" class="b_confirm" id="delete_confirm">CONFIRM</a>
+            </section>
+        </div>
+    </div>
+
+    <!-- BACK TO USER LOGIN BUTTON-->
+    <a href="{% url 'myapp:login_pg' %}" class="logout">Logout</a>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static "myapp/js/index.js" %}"></script>
+    </body>
+</html>
+		

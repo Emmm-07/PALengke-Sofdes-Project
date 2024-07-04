@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %} 
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>PALengke</title>
+        <link rel="icon" href="{% static "myapp/images/icon.ico" %}">
+        <link rel="stylesheet" href="{% static "myapp/css/login_pg.css" %}">
+	</head>
+	<body>
+    <input type="hidden" name="csrfmiddlewaretoken" id="csrf_token" value="{{csrf_token}}">   
+		<!-- BACKGROUND SLIDESHOW -->
+		<div class="slider">
+			<div class="slide slide1"></div>
+			<div class="slide slide2"></div>
+			<div class="slide slide3"></div>
+			<div class="slide slide4"></div>
+		</div>
+		<div class="wrapper">
+			<img src = "{% static "myapp/images/logo4.png" %}" style="height:250px;margin:1px 1px 10px 1px;">
+			<h1>ADMIN LOGIN</h1>    
+			<br>
+			<!-- SUPER ADMIN LOGIN FORM -->
+            <p id="error-msg" style="display:none;margin-right:2%;color:red;font-size:20px;">Incorrect username or password</p>
+            <form>
+                <input type="text" placeholder="USERNAME" id="username" class="username">
+                <input type="password" placeholder="PASSWORD" id="password" class="password">   
+             </form>
+            <div>
+                <button onclick="login()">LOGIN</button>
+            </div>
+		</div>
+
+        <!-- HOME BUTTON -->
+		<a href="{% url 'myapp:start_pg' %}" class="back"><img src = "{% static "myapp/images/home.png" %}" style="width:30px;margin:1px 1px 1px 1px;"></a>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="{% static "myapp/js/index.js" %}"></script>
+	</body>
+</html>	
+</span>
+		
