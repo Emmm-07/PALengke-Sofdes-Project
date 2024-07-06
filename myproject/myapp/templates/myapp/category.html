@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALengke</title>
+    <link rel="icon" href="{% static "myapp/images/icon.ico" %}">
+    <link rel="stylesheet" href="{% static "myapp/css/category.css" %}">
+  </head>
+  <body>
+    <input type="hidden" name="csrfmiddlewaretoken" id="csrf_token" value="{{csrf_token}}">    
+
+    <header>
+      <div class="logo">
+        <img src="{%static 'myapp/images/logo1.png' %}" alt="Logo">
+      </div> 
+      <!-- NAVIGATION BUTTON -->
+      <nav>
+        <ul>
+          <!-- MAP DISPLAY BUTTON -->
+          <li><a href="#c_modal" class="c_button">VIEW MAP</a>
+            <div class="c_modal" id="c_modal">
+              <div class="c_modal__dialog">
+                <section class="c_modal__content">
+                  <div>
+                    <a href="#" class="c_modal__close">&times;</a>
+                    <img src="{% static "myapp/images/map.png" %}" style="width:40rem;">   
+                  </div>
+                </section>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <main>
+      <div class="content">
+        <div class="title">{{ item_list.1 }}</div>     <!-- Change here -->
+
+        <!-- ITEMS -->
+        <div class="menu">
+        {% for item in item_list.0  %}
+        
+            <a href="#" class="b-button" onclick="sendItemName('{{item.0}}')">      <!--getStore(item_name,item_categ) -->
+              <img src="{{item.1}}">          
+              <span>{{item.0}}</span>
+            </a>
+
+          {% endfor %}
+          {% comment %} <a href="#" class="b-button">
+            <img src="{% static "myapp/images/m2.png" %}">
+            <span>PORK</span>
+          </a>
+          <a href="#" class="b-button">
+            <img src="{% static "myapp/images/m3.png" %}">
+            <span>BEEF</span>
+          </a> {% endcomment %}
+          
+
+        </div>
+      </div>
+    </main>
+
+
+
+
+    <!-- BACK BUTTON-->
+    <div class="button-container">
+      <a href="{% url "myapp:menu" %}" class="back">
+        <img src="{% static "myapp/images/home.png" %}" style="width:20px; margin: 1px;">
+      </a>
+      <a href="{% url 'myapp:menu' %}" class="back">
+        <img src="{% static "myapp/images/arrow.png" %}" style="width:20px; height:16px; margin: 1px 10px 1px 1px;">BACK
+      </a>
+    </div> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static "myapp/js/index.js" %}"></script>
+  </body>
+</html>
