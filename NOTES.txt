@@ -1,6 +1,0 @@
-TODO
-    - Ayusin yung menu pag nagsearch
-    get_categ(request):
-
-    js:
-    sendCateg()
