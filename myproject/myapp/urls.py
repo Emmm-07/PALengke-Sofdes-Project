@@ -11,6 +11,14 @@ urlpatterns = [
     path('', views.start_pg,name="start_pg"),
     path('verify_account/', views.verify_account,name="verify_account"),
     path('login_pg/', views.login_pg,name="login_pg"),
+
+    # This is testing for face recognition
+     path('face_recog/', views.face_recog,name="face_recog"),
+     path('video_feed/', views.video_feed,name="video_feed"),
+     path('start_camera/', views.start_camera,name="start_camera"),
+     path('stop_camera/', views.stop_camera,name="stop_camera"),
+
+
     path('menu/', views.menu,name="menu"),
     path('get_categ/', views.get_categ,name="get_categ"),
     path('get_item_name/', views.get_item_name,name="get_item_name"),

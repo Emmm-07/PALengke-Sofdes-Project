@@ -100,7 +100,7 @@ form input{
     opacity: 1;
   }
 
-button{
+.login-btn{
   font-size: 20px;
   font-family: sans-serif;
   padding: 7px 10px;
@@ -109,18 +109,50 @@ button{
   border: none;
   background: #2b464d;
   color: #fff;
+  /* color:black; */
   cursor: pointer;
-  position: absolute;
-  left: 50%;
   transform: translateX(-50%);
   bottom: 10px;
   width: 40%;
   margin-bottom: 15px;
+
+  /* position: absolute; */
+  /* left: 50%; */
+  margin-left: 250px;
+  margin-right: 0;
+
 }
 
-button:hover{
+
+.login-btn:hover{
   background: #20363b;
 }
+
+.face-btn{
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 0;
+  border-radius: 15px;
+  outline: none;
+  border: 6px solid #2b464d;
+  /* background: #2b464d; */
+  background-color:transparent ;
+  color: #fff;
+  cursor: pointer;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 10%;
+  margin-bottom: 15px;
+
+  /* position: absolute; */
+  /* left: 50%; */
+  margin-left: 0;
+  margin-right: 0%;
+
+  font-size: 20px;
+  
+}
+
 
 /* Home Page Button */
 .back {
@@ -141,4 +173,75 @@ button:hover{
 
 .back:hover {
   background: #20363b;
+}
+
+
+
+
+/* Modal pop up */
+.f_modal {
+  display:none;
+  background:rgba(0, 0, 0, .8);
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width: 100%;
+  margin: auto;
+  z-index: 1000;
+}
+
+.f_modal:target {
+  display:table;
+}
+
+.f_modal__dialog {
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.f_modal__content {
+  background: #ffffff;
+  /* border-radius: 1rem; */
+  border-radius: 10rem;
+  height: 40rem;
+  width: 60rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: slideUp 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.f_modal__title {
+  padding-left: 10px;
+  margin:0;
+}
+
+.f_modal__close {
+  font-size: 30px;
+  color:#161616;
+  text-decoration: none;
+  position:absolute;
+  top: 50px;
+  right:50px;
+}
+
+
+.f_modal__close:hover{
+  color: blue;
+}
+
+@keyframes slideUp {
+  from {
+    opacity:0;
+    bottom: -200px;
+  }
+  to {
+    opacity:1;
+    bottom:0;
+  }
 }

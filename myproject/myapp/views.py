@@ -7,12 +7,14 @@ from django.db.models import Q
 from django.contrib.auth.hashers import check_password
 import json          #a serializer - converts a list into a json string
 
+
 # Create your views here.
 class GlobalVar:
     def __init__(self):
         self.store_name = ""
         self.item_list = []
         self.market = []
+        self.camera = None
 globalVar = GlobalVar()
 
 
@@ -41,16 +43,6 @@ def menu(request):
 
 
 
-def database(request):
-    store_name = globalVar.store_name
-    if globalVar.store_name != "":
-        markets = Market.objects.filter(store__icontains=store_name).order_by('store')
-        # for i in markets:
-        #     print(i.store)
-    else:
-        markets = Market.objects.all().order_by('store')
-    globalVar.store_name = ""
-    return render(request,'myapp/database_pg.html',{'markets':markets})
 
 
 
@@ -69,6 +61,14 @@ def login_pg(request):
     return render(request,'myapp/login_pg.html')
 
 
+def database(request):
+    store_name = globalVar.store_name
+    if globalVar.store_name != "":
+        markets = Market.objects.filter(store__icontains=store_name).order_by('store')
+    else:
+        markets = Market.objects.all().order_by('store')
+    globalVar.store_name = ""
+    return render(request,'myapp/database_pg.html',{'markets':markets})
 
 def add_item(request):
     if request.method == 'POST'and request.FILES.get('imageFile'):
@@ -76,6 +76,7 @@ def add_item(request):
         
         # item_id = request.POST.get('itemId')
         item_name = request.POST.get('itemName')
+        item_name = item_name.title()                   #convert it to title case
         item_categ = request.POST.get('itemCateg')
         price = request.POST.get('itemPrice')
         store = request.POST.get('store')
@@ -179,6 +180,194 @@ def verify_account(request):
 
     print('Error verifying')
     return JsonResponse({'success':False,'wrong':'request','message':"Not a POST request"})
+
+
+
+# This is testing for face recognition --------------------------------------------------------------------------------------------------------------------------------
+# from django.http import StreamingHttpResponse
+import cv2
+# # to install face_recognition install first cmake and dlib 
+import face_recognition
+#  # Load known faces and their names
+known_face_encodings = []
+known_face_names = []
+
+known_face1_img = face_recognition.load_image_file("myapp/faces/piolopascual.jpg")
+known_face2_img = face_recognition.load_image_file("myapp/faces/jm.jpg")
+known_face2_img = face_recognition.load_image_file("myapp/faces/dagul.jpg")
+
+known_face1_encoding = face_recognition.face_encodings(known_face1_img)[0]
+known_face2_encoding = face_recognition.face_encodings(known_face2_img)[0]
+known_face3_encoding = face_recognition.face_encodings(known_face2_img)[0]
+
+
+known_face_encodings.append(known_face1_encoding)
+known_face_encodings.append(known_face2_encoding)
+known_face_encodings.append(known_face3_encoding)
+
+known_face_names.append("Piolo Pascual")
+known_face_names.append("Jm")
+known_face_names.append("Dagul")
+#     # Initialize webcam
+
+# # global camera 
+# # camera= cv2.VideoCapture(0)
+# # print("HEREEEEE")
+# # camera = None
+# # global camera
+# globalVar.camera= cv2.VideoCapture(0)
+
+# def face_recog():
+#     # if not camera.isOpened():
+#     if globalVar.camera is None or not globalVar.camera.isOpened():
+#             globalVar.camera= cv2.VideoCapture(0)
+#             print("No camera")
+#     while True:
+#         if globalVar.camera is None:
+#             globalVar.camera= cv2.VideoCapture(0)
+#             print("No camera")
+#             break
+#         camera = globalVar.camera
+#         success, img = camera.read()
+
+#         # Find all face locations in the current frame
+#         face_locations = face_recognition.face_locations(img)
+#         face_encoding = face_recognition.face_encodings(img,face_locations)
+
+#         # Loop through each face found in the frame 
+#         for (top,right,bottom,left), face_encoding in zip(face_locations,face_encoding):
+#             # Check if the face matches any known faces
+#             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+#             name = "Unknown"
+
+#             if True in matches:
+#                 first_match_index = matches.index(True)
+#                 name = known_face_names[first_match_index]
+
+#                 camera.release()
+#                 cv2.destroyAllWindows()
+#                 return JsonResponse({'message':"Hello this is from the camera"})
+               
+#             # Draw a box  around  the face and label with  name
+#             cv2.rectangle(img, (left,top), (right,bottom), (0,0,255), 2)   
+#             cv2.putText(img, name, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,0,255), 2)
+           
+#         # Display the resulting frame
+#         resized_img = cv2.resize(img, (400, 400))
+#         cv2.imshow("Image", resized_img)
+
+#         # Break the loop if 'q' is pressed
+#         if cv2.waitKey(1) & 0xFF == ord('q'):
+#             break
+        
+#         ret, buffer = cv2.imencode('.jpg',img)
+#         frame  = buffer.tobytes()
+#         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        
+       
+#     # cap.release()
+#     # cv2.destroyAllWindows()
+
+# def video_feed(request):
+#     print("Herereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+#     return StreamingHttpResponse(face_recog(), content_type='multipart/x-mixed-replace; boundary=frame')
+
+# def stop_camera(request):
+#      camera = globalVar.camera
+#      if camera is not None:
+#         camera.release()
+#         camera = None
+#      return JsonResponse({'status': 'Camera feed stopped'})
+
+from django.http import StreamingHttpResponse, JsonResponse
+# import cv2
+# import face_recognition
+
+# Global variable to manage camera resource and state
+# class GlobalVar:
+#     camera = None
+#     recognition_success = False
+
+# globalVar = GlobalVar()
+globalVar.camera= cv2.VideoCapture(0)
+
+def generate_frames():
+   
+    while globalVar.camera.isOpened():
+        success, img = globalVar.camera.read()
+        if not success or img is None:
+            break
+
+        # Encode frame to JPEG format
+        ret, buffer = cv2.imencode('.jpg', img)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+def video_feed(request):
+   
+    if globalVar.camera is None or not globalVar.camera.isOpened():
+        globalVar.camera = cv2.VideoCapture(0)
+    return StreamingHttpResponse(generate_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
+
+def start_camera(request):
+    if globalVar.camera is None or not globalVar.camera.isOpened():
+        globalVar.camera = cv2.VideoCapture(0)
+    return JsonResponse({'status': 'Camera started'})
+
+def stop_camera(request):
+    camera = globalVar.camera
+    if camera is not None:
+        camera.release()
+        camera = None
+    return JsonResponse({'status': 'Camera stopped'})
+
+def face_recog(request):
+    if globalVar.camera is None:
+        return JsonResponse({'status': 'No camera'})
+    
+    success, img = globalVar.camera.read()
+    if not success or img is None:
+        return JsonResponse({'status': 'No image'})
+
+    # Find all face locations in the current frame
+    face_locations = face_recognition.face_locations(img)
+    face_encodings = face_recognition.face_encodings(img, face_locations)
+
+    # Loop through each face found in the frame
+    for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
+        # Check if the face matches any known faces
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        if True in matches:
+            first_match_index = matches.index(True)
+            name = known_face_names[first_match_index]
+            # globalVar.recognition_success = True
+
+            camera = globalVar.camera
+            if camera is not None:
+                print("HERE IN face_recog(request)")
+                camera.release()
+                camera = None
+            return JsonResponse({'status': 'success', 'name': name})
+
+    return JsonResponse({'status': 'waiting'})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def search_map(request):

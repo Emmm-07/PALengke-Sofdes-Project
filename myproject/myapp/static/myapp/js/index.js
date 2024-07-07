@@ -49,13 +49,110 @@ function login(){
         alert(error);
     })
 
-}
+  }
+
+ 
+//   var modal = document.getElementById('f_modal')
+//   var closePopup = document.getElementsByClassName('f_modal__close')[0];
+//   var videoFeed = document.getElementById('video-feed')
+ 
+
+//   var videoFeedPath = 'http://127.0.0.1:8000/video_feed/'
+
+//   // When the user clicks on .c_modal__close / (x), close the modal
+
+//   closePopup.addEventListener('click',(event)=>{
+//       modal.style.display = 'none';
+//       console.log("Has been clicked")
+//       console.log(videoFeed.src)
+//   });
+    
+
 }catch(e){
     console.log("Error in login()")
     console.log(e)
     //pass
 }
 
+
+//This is testing for face recognition
+function faceRecognition(){
+    var modal = document.getElementById('f_modal');
+    let = document.getElementById('faceRecogBtn');
+    var videoFeed = document.getElementById('video-feed');
+    var videoFeedPath = 'http://127.0.0.1:8000/video_feed/';
+
+    videoFeed.src = videoFeedPath;
+    modal.style.display = 'block';
+
+    // axios.post('/video_feed/',{
+    // },{
+    //     headers:{
+    //         'X-CSRFToken': csrfToken,
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //     }
+    // }).then(response=>{
+    //     alert(response.data.message)
+    // }).catch(error=>{
+    //     alert(error);
+    // })
+
+    axios.post('/start_camera/',{
+    },{
+        headers:{
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }).then(response=>{
+        // alert(response.data.message)
+        pollRecognitionStatus();
+    }).catch(error=>{
+        alert(error);
+    })
+}
+
+function stopCamera(){
+    var modal = document.getElementById('f_modal');
+    var videoFeed = document.getElementById('video-feed');
+    
+    videoFeed.src=""
+    modal.style.display = 'none';
+
+    axios.post('/stop_camera/',{
+    },{
+        headers:{
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }).then(response=>{
+        // alert(response.data.message)
+    }).catch(error=>{
+        alert(error);
+    })
+
+}
+
+function pollRecognitionStatus(){
+
+    axios.post('/face_recog/',{
+    },{
+        headers:{
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }).then(response=>{
+        // alert(response.data.message)
+        if(response.data.status=='success'){
+            location.href = '/database'
+        }else{
+            setTimeout(pollRecognitionStatus,1000)
+        }
+    }).catch(error=>{
+        console.error('Error checking recognition status:', error);
+        setTimeout(pollRecognitionStatus, 1000);
+    })
+
+}
 
 
 
@@ -157,7 +254,7 @@ try{
                             'Content-Type':'application/x-www-form-urlencoded'
                         }
                     }).then(response=>{
-                        // location.href = '/database';
+                        location.href = '/database';
                     }).catch(error=>{
                         alert(error);
                     })
