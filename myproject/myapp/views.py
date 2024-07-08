@@ -192,22 +192,23 @@ import face_recognition
 known_face_encodings = []
 known_face_names = []
 
-known_face1_img = face_recognition.load_image_file("myapp/faces/piolopascual.jpg")
-known_face2_img = face_recognition.load_image_file("myapp/faces/jm.jpg")
-known_face2_img = face_recognition.load_image_file("myapp/faces/dagul.jpg")
+# known_face1_img = face_recognition.load_image_file("myapp/faces/piolopascual.jpg")
+# known_face2_img = face_recognition.load_image_file("myapp/faces/jm.jpg")
+# known_face3_img = face_recognition.load_image_file("myapp/faces/dagul.jpg")
+known_face2_img = face_recognition.load_image_file("myapp/faces/steve.jpeg")
 
-known_face1_encoding = face_recognition.face_encodings(known_face1_img)[0]
+# known_face1_encoding = face_recognition.face_encodings(known_face1_img)[0]
 known_face2_encoding = face_recognition.face_encodings(known_face2_img)[0]
-known_face3_encoding = face_recognition.face_encodings(known_face2_img)[0]
+# known_face3_encoding = face_recognition.face_encodings(known_face2_img)[0]
 
 
-known_face_encodings.append(known_face1_encoding)
+# known_face_encodings.append(known_face1_encoding)
 known_face_encodings.append(known_face2_encoding)
-known_face_encodings.append(known_face3_encoding)
+# known_face_encodings.append(known_face3_encoding)
 
-known_face_names.append("Piolo Pascual")
+# known_face_names.append("Piolo Pascual")
 known_face_names.append("Jm")
-known_face_names.append("Dagul")
+# known_face_names.append("Dagul")
 #     # Initialize webcam
 
 # # global camera 
@@ -351,9 +352,6 @@ def face_recog(request):
             return JsonResponse({'status': 'success', 'name': name})
 
     return JsonResponse({'status': 'waiting'})
-
-
-
 
 
 

@@ -27,6 +27,9 @@ body {
 .logo {
   width: 45%;
   max-width: 800px;
+  /* border:none;
+  outline: none;
+  background-color: transparent; */
 }
 
 h1 {
@@ -496,7 +499,6 @@ nav {
   }
   
   .c_modal__content div{
-    border: 2px solid #333;
     height: 80%;
     width: 80%;
   }

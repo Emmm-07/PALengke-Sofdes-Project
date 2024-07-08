@@ -135,8 +135,8 @@ form input{
   border-radius: 15px;
   outline: none;
   border: 6px solid #2b464d;
-  /* background: #2b464d; */
-  background-color:transparent ;
+  background: #2b464d;
+  /* background-color:transparent ; */
   color: #fff;
   cursor: pointer;
   transform: translateX(-50%);
@@ -203,9 +203,9 @@ form input{
 .f_modal__content {
   background: #ffffff;
   /* border-radius: 1rem; */
-  border-radius: 10rem;
-  height: 40rem;
-  width: 60rem;
+  border-radius: 2rem;
+  height: 30rem;
+  width: 40rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -226,8 +226,8 @@ form input{
   color:#161616;
   text-decoration: none;
   position:absolute;
-  top: 50px;
-  right:50px;
+  top: 20px;
+  right:30px;
 }
 
 
