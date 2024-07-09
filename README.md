@@ -15,7 +15,13 @@ product they are looking for.
 
 **Python**: For server-side scripting and managing the backend logic of the application.
 
+**Django**: Python framework for web development
+
+**OpenCV**: Used in the optional feature: Admin Face Login
+
 **SQL**: For database management
+
+
 
 
 
