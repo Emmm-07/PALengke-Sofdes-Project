@@ -37,6 +37,9 @@ product they are looking for.
 ### Items Page
 <img src="myproject\myapp\static\myapp\images\itemspage.png" height=500 width=700>
 
+### Stores Page
+<img src="myproject\myapp\static\myapp\images\stores.png" height=500 width=700>
+
 ### Waypoint
 <img src="myproject\myapp\static\myapp\images\waypoint.png" height=500 width=700>
 
@@ -51,6 +54,7 @@ product they are looking for.
 <img src="myproject\myapp\static\myapp\images\add.png" height=400 width=700>
 <img src="myproject\myapp\static\myapp\images\edit.png" height=400 width=700>
 <img src="myproject\myapp\static\myapp\images\delete.png" height=400 width=700>
+<br>
 
 ## CONTRIBUTORS:
 
