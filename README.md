@@ -47,10 +47,10 @@ product they are looking for.
 <img src="myproject\myapp\static\myapp\images\face_recog_img.png" height=500 width=700>
 
 ### Admin Page with Database CRUD functionalities
-<img src="myproject\myapp\static\myapp\images\db.png" height=300 width=500>
-<img src="myproject\myapp\static\myapp\images\add.png" height=300 width=500>
-<img src="myproject\myapp\static\myapp\images\edit.png" height=300 width=500>
-<img src="myproject\myapp\static\myapp\images\delete.png" height=300 width=500>
+<img src="myproject\myapp\static\myapp\images\db.png" height=400 width=700>
+<img src="myproject\myapp\static\myapp\images\add.png" height=400 width=700>
+<img src="myproject\myapp\static\myapp\images\edit.png" height=400 width=700>
+<img src="myproject\myapp\static\myapp\images\delete.png" height=400 width=700>
 
 ## CONTRIBUTORS:
 
