@@ -23,14 +23,25 @@ product they are looking for.
 <br>
 ### Homepage
 <img src="myproject\myapp\static\myapp\images\homepage.png" height=500 width=700>
-<br>
+
 ### Login Page
 <img src="myproject\myapp\static\myapp\images\loginpage.png" height=500 width=700>
-<br>
+
 ### Menu Page
-<img src="myproject\myapp\static\myapp\images\menupage.png" height=500 width=700>
+<img src="myproject\myapp\static\myapp\images\menupage.png" height=300 width=500>
+<img src="myproject\myapp\static\myapp\images\menupage_search.png" height=700 width=500>
 
+### Items Page
+<img src="myproject\myapp\static\myapp\images\itemspage.png" height=500 width=700>
 
+### Waypoint
+<img src="myproject\myapp\static\myapp\images\waypoint.png" height=500 width=700>
+
+### Login Page
+<img src="myproject\myapp\static\myapp\images\loginpage.png" height=500 width=700>
+
+### Admin Face Login
+<img src="myproject\myapp\static\myapp\images\face_recog_img.png" height=500 width=700>
 
 ## CONTRIBUTORS:
 
