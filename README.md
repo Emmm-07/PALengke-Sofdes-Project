@@ -21,12 +21,18 @@ product they are looking for.
 
 **SQLite**: For database 
 <br>
+
+## Project UI
+
+<br>
+<br>
+
 ### Homepage
 <img src="myproject\myapp\static\myapp\images\homepage.png" height=500 width=700>
 
 ### Menu Page
-<img src="myproject\myapp\static\myapp\images\menupage.png" height=300 width=500>
-<img src="myproject\myapp\static\myapp\images\menupage_search.png" height=300 width=500>
+<img src="myproject\myapp\static\myapp\images\menupage.png" height=400 width=700>
+<img src="myproject\myapp\static\myapp\images\menupage_search.png" height=400 width=700>
 
 ### Items Page
 <img src="myproject\myapp\static\myapp\images\itemspage.png" height=500 width=700>
