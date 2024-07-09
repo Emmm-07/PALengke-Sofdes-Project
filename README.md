@@ -22,7 +22,7 @@ product they are looking for.
 **SQLite**: For database 
 
 
-
+<img src="myproject\myapp\static\myapp\images\homepage.png" height=300 width=200>
 
 
 
