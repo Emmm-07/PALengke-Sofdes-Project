@@ -24,8 +24,6 @@ product they are looking for.
 
 ## Project UI
 
-<br>
-
 ### Homepage
 <img src="myproject\myapp\static\myapp\images\homepage.png" height=500 width=700>
 
