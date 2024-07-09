@@ -5,7 +5,8 @@ This platform can also provide them with navigation routes with the kiosk as the
 for new customers who are unfamiliar with the market layout. Users can view which stores sell the 
 product they are looking for. 
 
-##Technologies Used:
+## Technologies Used:
+
 **HTML**: For creating the structure and content of the web pages.
 
 **CSS**: For styling the web pages and making them visually appealing.
