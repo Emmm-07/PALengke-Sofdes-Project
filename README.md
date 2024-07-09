@@ -19,7 +19,7 @@ product they are looking for.
 
 **OpenCV**: Used in the optional feature: Admin Face Login
 
-**SQL**: For database management
+**SQLite**: For database 
 
 
 
