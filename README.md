@@ -20,10 +20,15 @@ product they are looking for.
 **OpenCV**: Used in the the project feature: Admin Face Login
 
 **SQLite**: For database 
-
-
+<br>
+### Homepage
 <img src="myproject\myapp\static\myapp\images\homepage.png" height=500 width=700>
-
+<br>
+### Login Page
+<img src="myproject\myapp\static\myapp\images\loginpage.png" height=500 width=700>
+<br>
+### Menu Page
+<img src="myproject\myapp\static\myapp\images\menupage.png" height=500 width=700>
 
 
 
