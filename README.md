@@ -17,7 +17,7 @@ product they are looking for.
 
 **Django**: Python framework for web development
 
-**OpenCV**: Used in the optional feature: Admin Face Login
+**OpenCV**: Used in the the project feature: Admin Face Login
 
 **SQLite**: For database 
 
