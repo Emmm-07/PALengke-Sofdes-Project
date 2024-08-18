@@ -53,6 +53,10 @@ product they are looking for.
 <img src="myproject\myapp\static\myapp\images\delete.png" height=400 width=700>
 <br>
 
+## Demo
+Watch the project in action: 
+[here🚀](https://reccloud.com/u/2m4r3zj)
+
 ## CONTRIBUTORS:
 
 **Balatico, John Michael**
