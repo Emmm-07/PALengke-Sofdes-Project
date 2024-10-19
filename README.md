@@ -5,6 +5,11 @@ This platform can also provide them with navigation routes with the kiosk as the
 for new customers who are unfamiliar with the market layout. Users can view which stores sell the 
 product they are looking for. 
 
+
+## Demo
+Watch the project in action: 
+[here🚀](https://reccloud.com/u/2m4r3zj)
+
 ## Technologies Used:
 
 **HTML**: For creating the structure and content of the web pages.
@@ -21,10 +26,6 @@ product they are looking for.
 
 **SQLite**: For database 
 <br>
-
-## Demo
-Watch the project in action: 
-[here🚀](https://reccloud.com/u/2m4r3zj)
 
 ## Project UI
 
